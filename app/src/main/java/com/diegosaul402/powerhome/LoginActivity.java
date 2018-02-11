@@ -2,6 +2,7 @@ package com.diegosaul402.powerhome;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,8 +39,10 @@ public class LoginActivity extends AppCompatActivity implements LoginCaller.Logi
     }
 
     @Override
-    public void successLogin(Data response) {
+    public void successLogin(Data response, String accessToken, String client) {
         Toast.makeText(this, "Success Login: " + response.getUid() + response.getEmail(), Toast.LENGTH_LONG).show();
+        Log.v("RESPONSE: ", accessToken + ": " + client);
+
     }
 
     @Override

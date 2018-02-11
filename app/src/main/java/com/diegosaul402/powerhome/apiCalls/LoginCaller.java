@@ -30,7 +30,9 @@ public class LoginCaller {
         mAPIService.callLogin(email, password).enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
-                mResponse.successLogin(response.body());
+                mResponse.successLogin(response.body(),
+                        response.headers().get("Access-token"),
+                        response.headers().get("Client"));
                 mResponse.inProgress(false);
             }
 
@@ -43,7 +45,7 @@ public class LoginCaller {
     }
 
     public interface LoginResponse{
-        void successLogin(Data response);
+        void successLogin(Data response, String accessToken, String client);
         void errorLogin(String error);
         void inProgress(boolean isInProgress);
     }
